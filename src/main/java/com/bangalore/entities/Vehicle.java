@@ -2,58 +2,47 @@ package com.bangalore.entities;
 
 import com.bangalore.enums.Signal;
 import com.bangalore.enums.VehicleState;
+import com.bangalore.interfaces.SignalObserver;
 
-public class Vehicle {
+public class Vehicle implements SignalObserver {
     private VehicleState state = VehicleState.MOVING;
-    private final String vehicleName;
 
-    public Vehicle(String name) {
-        this.vehicleName = name;
+
+    public void brake(){
+        this.state = VehicleState.STOPPED;
     }
 
-    public String getVehicleName() {
-        return this.vehicleName;
-    }
-
-    public VehicleState getState() {
-        return state;
-    }
-
-    void setState(VehicleState state) {
-        this.state = state;
-    }
-
-    public void drive() {
-        System.out.println(this.vehicleName + " started moving");
-        setState(VehicleState.MOVING);
-    }
-
-    public void brake() {
-        System.out.println(this.vehicleName + " stopped");
-        setState(VehicleState.STOPPED);
+    public void drive(){
+        this.state = VehicleState.MOVING;
     }
 
     public void igniteEngine() {
-        System.out.println(this.vehicleName + " started its engine");
-        setState(VehicleState.IDLING);
+        this.state = VehicleState.IDLING;
     }
 
-    public boolean isMoving() {
-        return this.state == VehicleState.MOVING;
+    public boolean hasStopped() {
+        return state == VehicleState.STOPPED;
     }
 
-    public boolean hasEngineStarted() {
-        return this.state == VehicleState.MOVING || this.state == VehicleState.IDLING;
-    }
-
-    public void readSignal(Signal signal) {
-        switch (signal) {
+    @Override
+    public void onSignalChange(Signal signal) {
+        switch (signal){
             case RED -> brake();
-            case YELLOW -> igniteEngine();
             case GREEN -> drive();
+            case YELLOW -> igniteEngine();
         }
     }
 
-    public void requestForEmergency(TrafficSignal trafficSignal) {
+    public boolean isMoving() {
+        return state == VehicleState.MOVING;
+    }
+
+    public boolean hasStartedEngine() {
+        return state == VehicleState.IDLING;
+    }
+
+    @Override
+    public boolean hasRequestedEmergency(){
+        return false;
     }
 }
