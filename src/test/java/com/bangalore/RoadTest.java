@@ -46,7 +46,7 @@ public class RoadTest {
     }
 
     @Test
-    void signalShouldTurnGreenAndVehiclesShouldMove(){
+    void vehiclesShouldMoveWhenAnEmergencyVehicleEntersTheRoad(){
         TrafficSignal signal = new TrafficSignal();
         Road road = new Road(signal);
 
