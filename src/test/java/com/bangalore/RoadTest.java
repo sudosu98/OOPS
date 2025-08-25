@@ -105,7 +105,6 @@ public class RoadTest {
         road.addVehicle(car);
         road.addVehicle(bus);
 
-
         road.moveTraffic();
 
         Assertions.assertEquals(0, road.getVehicles().size());
@@ -122,7 +121,6 @@ public class RoadTest {
 
         road.addVehicle(car);
         road.addVehicle(bus);
-
 
         road.moveTraffic();
 
