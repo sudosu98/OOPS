@@ -70,7 +70,7 @@ public class RoadTest {
     }
 
     @Test
-    void vehiclesShouldNotMoveWhenSpecialVehicleIsInEmergency(){
+    void vehiclesShouldNotMoveWhenSpecialVehicleIsNotInEmergency(){
         TrafficSignal signal = new TrafficSignal();
         Road road = new Road(signal);
 

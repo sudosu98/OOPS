@@ -28,10 +28,10 @@ public class TrafficSignal implements Subject {
 
     @Override
     public void addObserver(SignalObserver signalObserver) {
+        observers.add(signalObserver);
         if(signalObserver.hasRequestedEmergency()){
             go();
         }
-        observers.add(signalObserver);
         notifyObservers();
     }
 
