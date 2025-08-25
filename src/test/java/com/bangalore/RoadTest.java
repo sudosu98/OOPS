@@ -62,7 +62,7 @@ public class RoadTest {
 
         road.addVehicle(ambulance);
 
-        Assertions.assertEquals(Signal.GREEN, signal.getCurrentSignal());
+        Assertions.assertEquals(Signal.GREEN, signal.getState());
 
         Assertions.assertTrue(car.isMoving());
         Assertions.assertTrue(bus.isMoving());
@@ -86,10 +86,93 @@ public class RoadTest {
         road.addVehicle(ambulance);
 
 
-        Assertions.assertEquals(Signal.RED, signal.getCurrentSignal());
+        Assertions.assertEquals(Signal.RED, signal.getState());
 
         Assertions.assertFalse(car.isMoving());
         Assertions.assertFalse(bus.isMoving());
         Assertions.assertFalse(ambulance.isMoving());
+    }
+
+    @Test
+    void vehiclesShouldExitTheRoadWhenSignalIsGreen(){
+        TrafficSignal signal = new TrafficSignal();
+        signal.go();
+        Road road = new Road(signal);
+
+        Vehicle car = new Vehicle();
+        Vehicle bus = new Vehicle();
+
+        road.addVehicle(car);
+        road.addVehicle(bus);
+
+
+        road.moveTraffic();
+
+        Assertions.assertEquals(0, road.getVehicles().size());
+    }
+
+    @Test
+    void vehiclesShouldNotExitFromRoadWhenSignalIsRed(){
+        TrafficSignal signal = new TrafficSignal();
+        signal.stop();
+        Road road = new Road(signal);
+
+        Vehicle car = new Vehicle();
+        Vehicle bus = new Vehicle();
+
+        road.addVehicle(car);
+        road.addVehicle(bus);
+
+
+        road.moveTraffic();
+
+        Assertions.assertEquals(2, road.getVehicles().size());
+    }
+
+    @Test
+    void vehiclesShouldExitTheRoadWhenVehicleIsInEmergency(){
+        TrafficSignal signal = new TrafficSignal();
+        signal.stop();
+        Road road = new Road(signal);
+
+        Vehicle car = new Vehicle();
+        Vehicle bus = new Vehicle();
+        SpecialVehicle ambulance = new SpecialVehicle();
+        ambulance.turnOnSiren();
+
+        road.addVehicle(car);
+        road.addVehicle(bus);
+        Assertions.assertEquals(Signal.RED, signal.getState());
+
+        road.addVehicle(ambulance);
+
+        Assertions.assertEquals(Signal.GREEN, signal.getState());
+
+
+        road.moveTraffic();
+
+        Assertions.assertEquals(0, road.getVehicles().size());
+    }
+
+    @Test
+    void vehiclesShouldNotExitTheRoadWhenVehicleIsInEmergency(){
+        TrafficSignal signal = new TrafficSignal();
+        signal.stop();
+        Road road = new Road(signal);
+
+        Vehicle car = new Vehicle();
+        Vehicle bus = new Vehicle();
+        SpecialVehicle ambulance = new SpecialVehicle();
+
+        road.addVehicle(car);
+        road.addVehicle(bus);
+        road.addVehicle(ambulance);
+
+        Assertions.assertEquals(Signal.RED, signal.getState());
+
+
+        road.moveTraffic();
+
+        Assertions.assertEquals(3, road.getVehicles().size());
     }
 }

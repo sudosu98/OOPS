@@ -34,7 +34,7 @@ public class TrafficSignalTest {
         ambulance.turnOnSiren();
         signal.addObserver(ambulance);
 
-        Assertions.assertEquals(Signal.GREEN, signal.getCurrentSignal());
+        Assertions.assertEquals(Signal.GREEN, signal.getState());
         Assertions.assertTrue(car.isMoving());
         Assertions.assertTrue(ambulance.isMoving());
     }

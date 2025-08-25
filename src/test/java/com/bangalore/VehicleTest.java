@@ -16,19 +16,19 @@ public class VehicleTest {
 
     @Test
     void vehicleShouldStopWhenSignalIsRed(){
-        vehicle.onSignalChange(Signal.RED);
+        vehicle.onChange(Signal.RED);
         Assertions.assertTrue(vehicle.hasStopped());
     }
 
     @Test
     void vehicleShouldMoveWhenSignalIsGreen(){
-        vehicle.onSignalChange(Signal.GREEN);
+        vehicle.onChange(Signal.GREEN);
         Assertions.assertTrue(vehicle.isMoving());
     }
 
     @Test
     void vehicleShouldIgniteEngineWhenSignalIsYellow(){
-        vehicle.onSignalChange(Signal.YELLOW);
+        vehicle.onChange(Signal.YELLOW);
         Assertions.assertTrue(vehicle.hasStartedEngine());
     }
 }

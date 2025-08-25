@@ -11,4 +11,8 @@ public class SpecialVehicle extends Vehicle {
     public void turnOnSiren(){
         this.isInEmergency = true;
     }
+
+    public void turnOffSiren(){
+        this.isInEmergency = false;
+    }
 }

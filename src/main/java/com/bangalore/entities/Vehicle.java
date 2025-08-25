@@ -25,7 +25,7 @@ public class Vehicle implements SignalObserver {
     }
 
     @Override
-    public void onSignalChange(Signal signal) {
+    public void onChange(Signal signal) {
         switch (signal){
             case RED -> brake();
             case GREEN -> drive();

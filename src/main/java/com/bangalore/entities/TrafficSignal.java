@@ -7,7 +7,7 @@ import com.bangalore.interfaces.Subject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrafficSignal implements Subject {
+public class TrafficSignal implements Subject<Signal, SignalObserver> {
     private Signal currentSignal = Signal.YELLOW;
     private final List<SignalObserver> observers = new ArrayList<>();
 
@@ -22,7 +22,7 @@ public class TrafficSignal implements Subject {
         notifyObservers();
     }
 
-    public Signal getCurrentSignal(){
+    public Signal getState(){
         return currentSignal;
     }
 
@@ -44,7 +44,7 @@ public class TrafficSignal implements Subject {
     @Override
     public void notifyObservers() {
         for(SignalObserver observer: observers){
-            observer.onSignalChange(currentSignal);
+            observer.onChange(currentSignal);
         }
     }
 
