@@ -44,4 +44,25 @@ Develop a solution for this equation using kramers rule
 *
     - Representation of equation should be decoupled from the algorithm that solves it.
 
-### Given an input date range and the date of fiscal year close, split this date range into n number of fiscal years along with the actual date ranges
+### Given an input date range and the date of fiscal year close month, split this date range into n number of fiscal years along with the actual date ranges
+
+### Entities
+1. Fiscal Year 
+2. DateRange
+3. YearSplitter
+
+### Year
+1. yearStart
+2. yearEnd
+
+### Fiscal Year
+1. FY 2025 = 31st March 2025 - 31st March 2026
+
+### Date Range
+1. startDate
+2. endDate
+3. Range is valid when start date is less than end date
+
+### YearSplitter
+1. Splits the given range into resulting start, end dates for the years within the range.
+

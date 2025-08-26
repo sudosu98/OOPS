@@ -1,4 +1,7 @@
 package com.fiscalyear.interfaces;
 
-public interface YearSplitter {
+import java.util.List;
+
+public interface YearSplitter<T> {
+    List<T> split();
 }

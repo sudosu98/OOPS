@@ -153,7 +153,7 @@ public class RoadTest {
     }
 
     @Test
-    void vehiclesShouldNotExitTheRoadWhenVehicleIsInEmergency(){
+    void vehiclesShouldNotExitTheRoadWhenVehicleIsNotInEmergency(){
         TrafficSignal signal = new TrafficSignal();
         signal.stop();
         Road road = new Road(signal);
