@@ -21,8 +21,10 @@ public class FiscalYearSplitterTest {
         DateRange range = new DateRange(inputStart, inputEnd);
         int fiscalMonth = 3;
 
-        FiscalYearSplitter fiscalYearSplitter = new FiscalYearSplitter(range,
-                                                                       fiscalMonth);
+        FiscalYearSplitter fiscalYearSplitter = new FiscalYearSplitter(
+                range,
+                fiscalMonth
+        );
         List<FiscalYear> fiscalYears = fiscalYearSplitter.split();
 
         System.out.println("Result -> " + fiscalYears);
@@ -38,8 +40,10 @@ public class FiscalYearSplitterTest {
         LocalDate end2 = LocalDate.of(2021, 3, 31);
         LocalDate start3 = LocalDate.of(2021, 4, 1);
         LocalDate end3 = LocalDate.of(2022, 3, 31);
-        return Arrays.asList(new FiscalYear(start1, end1),
-                             new FiscalYear(start2, end2),
-                             new FiscalYear(start3, end3));
+        return Arrays.asList(
+                new FiscalYear(start1, end1),
+                new FiscalYear(start2, end2),
+                new FiscalYear(start3, end3)
+        );
     }
 }

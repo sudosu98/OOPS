@@ -1,36 +1,25 @@
 package com.fiscalyear.entities;
 
+import com.fiscalyear.abstractions.Range;
+
 import java.time.LocalDate;
 
-public class DateRange {
-    private final LocalDate start;
-    private final LocalDate end;
+public class DateRange extends Range<LocalDate> {
 
     public DateRange(LocalDate start, LocalDate end) {
+        super(start, end);
         if(start.isAfter(end)){
-            throw new IllegalArgumentException("Invalid date range");
+            throw new IllegalArgumentException("Invalid Date range");
         }
-        this.start = start;
-        this.end = end;
-    }
-
-    public LocalDate getStart() {
-        return start;
-    }
-
-    public LocalDate getEnd() {
-        return end;
     }
 
     public DateRange clamp(DateRange dateRange) {
-        LocalDate newStart = start.isAfter(dateRange.getStart()) ? start : dateRange.getStart();
-        LocalDate newEnd  = end.isBefore(dateRange.end) ? end : dateRange.getEnd();
-        if(newStart.isAfter(newEnd)) return null;
+        LocalDate newStart = this.getStart().isAfter(
+                dateRange.getStart()) ? this.getStart() : dateRange.getStart();
+        LocalDate newEnd = this.getEnd().isBefore(
+                dateRange.getEnd()) ? this.getEnd() : dateRange.getEnd();
+        if (newStart.isAfter(newEnd)) return null;
         return new DateRange(newStart, newEnd);
     }
 
-    @Override
-    public String toString() {
-        return start + "->" + end;
-    }
 }

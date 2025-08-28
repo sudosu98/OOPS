@@ -18,7 +18,6 @@ public class FiscalYear implements Year {
         this.label = "FY" + end.getYear();
     }
 
-
     @Override
     public String toString() {
         return start + "->" + end + " " + label;

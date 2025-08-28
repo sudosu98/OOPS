@@ -43,6 +43,9 @@ Develop a solution for this equation using kramers rule
 
 *
     - Representation of equation should be decoupled from the algorithm that solves it.
+### Entities
+1. Equation
+2. Solution
 
 ### Given an input date range and the date of fiscal year close month, split this date range into n number of fiscal years along with the actual date ranges
 
